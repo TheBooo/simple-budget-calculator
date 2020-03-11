@@ -1,9 +1,9 @@
 import React from "react";
 import { MdDone } from "react-icons/md";
 
-const Form = () => {
+const Form = props => {
   return (
-    <form>
+    <form onSubmit={props.onHandleSubmit}>
       <div className="form-center">
         <div className="form-group">
           <label htmlFor="charge">Расходы</label>
@@ -13,21 +13,25 @@ const Form = () => {
             id="charge"
             name="charge"
             placeholder="Ипотека"
+            value={props.charge}
+            onChange={props.onHandleCharge}
           />
         </div>
         <div className="form-group">
           <label htmlFor="amount">Стоимость</label>
           <input
-            type="text"
+            type="number"
             className="form-control"
             id="amount"
             name="amount"
             placeholder="20000"
+            value={props.amount}
+            onChange={props.onHandleAmount}
           />
         </div>
         <div className="form-group">
           <button className="btn" type="submit">
-            Добавить <MdDone />
+            {props.edit ? `Изменить ` : `Добавить`} <MdDone />
           </button>
         </div>
       </div>
